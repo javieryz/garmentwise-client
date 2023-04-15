@@ -89,6 +89,11 @@ def generate_wordcloud(df: pd.DataFrame):
     image_file.seek(0)
     image_data = image_file.read()
     return image_data
+
+def generate_word_frequencies(df: pd.DataFrame):
+    text = ' '.join(df['reviewTextPreprocessed'])
+    word_frequencies = WordCloud().process_text(text)
+    return word_frequencies
     
 def predict(file: UploadFile):
     df = pd.read_csv(file.file)
@@ -109,6 +114,7 @@ def predict(file: UploadFile):
     df['category'] = df['category'].fillna('')
 
     wordcloud = generate_wordcloud(df)
+    word_frequencies = generate_word_frequencies(df)
 
     overall_score = generate_score(df, sgd, cv)
     fit_score = generate_score(fit_df, mnb_fit, cv_fit)
@@ -138,4 +144,4 @@ def predict(file: UploadFile):
 
     reviews_list = df.to_dict(orient='records')
 
-    return predictions, report_metadata, reviews_list, wordcloud
+    return predictions, report_metadata, reviews_list, wordcloud, word_frequencies

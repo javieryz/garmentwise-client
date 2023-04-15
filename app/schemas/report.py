@@ -1,7 +1,10 @@
-from sqlalchemy import Column, Float, ForeignKey, Integer, LargeBinary, String
+from datetime import date
+from sqlalchemy import Date, Column, Float, ForeignKey, Integer, LargeBinary, String
 from schemas.dataset import Dataset
 from database.database import Base
 from sqlalchemy.orm import relationship, Session
+from sqlalchemy.dialects.postgresql import JSONB, JSON
+from sqlalchemy.ext.mutable import MutableDict
 from pydantic import BaseModel
 
 class Report(Base):
@@ -10,6 +13,8 @@ class Report(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     user_id = Column(Integer, ForeignKey('users.id'))
+    report_group_id = Column(Integer, ForeignKey('report_groups.id'))
+    date = Column(Date)
     overall_score = Column(Float)
     fit_score = Column(Float)
     color_score = Column(Float)
@@ -19,12 +24,14 @@ class Report(Base):
     color_reviews = Column(Integer)
     quality_reviews = Column(Integer)
     wordcloud = Column(LargeBinary)
-
+    frequencies = Column(JSONB)
     dataset = relationship('Dataset', backref='report')
     
     class ReportCreate(BaseModel):
         title: str
         user_id: int
+        report_group_id: int
+        date: date
         overall_score: float
         fit_score: float
         color_score: float
@@ -34,6 +41,7 @@ class Report(Base):
         color_reviews: int
         quality_reviews: int
         wordcloud: bytes
+        frequencies: dict
     
     @classmethod
     def create_report(cls, db: Session, report: ReportCreate):

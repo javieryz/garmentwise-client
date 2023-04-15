@@ -1,5 +1,8 @@
 from base64 import b64encode
 from datetime import datetime
+import json
+from schemas.user import User
+from schemas.report_group import ReportGroup
 from schemas.review import Review
 from schemas.dataset import Dataset
 from database.database import SessionLocal
@@ -7,14 +10,24 @@ from schemas.report import Report
 from schemas.review_categories import review_categories
 from sqlalchemy.orm import joinedload
 
+# Database storage
+def save_collection(collection_name: str, user: User, db: SessionLocal):
+    report_group = ReportGroup.ReportGroupCreate(name=collection_name, user_id=user.id)
+    db_report_group = ReportGroup(**report_group.dict())
+    db.add(db_report_group)
+    db.commit()
+    db.refresh(db_report_group)
+    return db_report_group
+
+
 def save_report(report_data: dict, db: SessionLocal):
     report = Report.ReportCreate(**report_data)
     db_report = Report(**report.dict())
+    print(db_report)
     db.add(db_report)
     db.commit()
     db.refresh(db_report)
     return db_report
-
 
 def save_dataset(report: Report, report_metadata: dict, db: SessionLocal):
     dataset_create_data = Dataset.DatasetCreate(title=report_metadata['dataset_title'], report_id=report.id, date=datetime.now())
@@ -23,7 +36,6 @@ def save_dataset(report: Report, report_metadata: dict, db: SessionLocal):
     db.commit()
     db.refresh(db_dataset)
     return db_dataset
-
 
 def save_reviews(dataset: Dataset, reviews_list: list, db: SessionLocal):
     reviews_categories = []
@@ -37,9 +49,7 @@ def save_reviews(dataset: Dataset, reviews_list: list, db: SessionLocal):
         db.commit()
         db.refresh(db_review)
         reviews_categories.append({"review_id": db_review.id, "category": review['category']})
-    
     return reviews_categories
-
 
 def save_review_categories(reviews_categories_list: list, db: SessionLocal):
     for review_category in reviews_categories_list:
@@ -48,12 +58,26 @@ def save_review_categories(reviews_categories_list: list, db: SessionLocal):
             db.commit()
 
 
+# Collections
+def get_collections_by_user(user_id: int, db: SessionLocal):
+    collections = db.query(ReportGroup).filter_by(user_id=user_id).all()
+    return collections
+
+def get_reports_by_collection(report_group_id: int, db: SessionLocal):
+    reports = reports = db.query(Report).filter_by(report_group_id=report_group_id).all()
+    for report in reports:
+        report.wordcloud = ""
+    return reports
+
+
+# Reports
 def get_report(report_id: int, db: SessionLocal):
     report = db.query(Report).filter_by(id=report_id).first()
+    report.wordcloud = ""
     return report
 
 
-def get_reports_info(user_id: int, db: SessionLocal):
+def get_reports_info_by_user(user_id: int, db: SessionLocal):
     reports = db.query(Report).filter_by(user_id=user_id).all()
     reports_ids = {report.id: report.title for report in reports}
     return reports_ids
@@ -71,6 +95,7 @@ def get_reviews(report_id: int, offset: int, limit: int, db: SessionLocal):
         .all()
     )
     return reviews
+
 
 def get_wordcloud(report_id: int, db: SessionLocal):
     report = db.query(Report).filter_by(id=report_id).first()

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, validator
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy.dialects.postgresql import JSONB
 from datetime import date
 from database.database import Base, TITLE_MAX_LENGTH
 from sqlalchemy.orm import relationship
