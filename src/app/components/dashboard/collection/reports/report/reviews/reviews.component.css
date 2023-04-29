@@ -1,0 +1,9 @@
+.review-text.expanded {
+    overflow: visible;
+    height: auto;
+}
+
+.show {
+    display: inline-block;
+    font-size: 0.8rem;
+}

@@ -1,0 +1,6 @@
+
+app-sentiment-card {
+    border-radius: 0.7rem;
+    aspect-ratio: 1.2;
+    min-width: 20%;
+}

@@ -1,0 +1,29 @@
+<div class="flex flex-col justify-between mb-6">
+  <div class="flex flex-wrap justify-between items-center text-md font-medium">
+    <p class="flex-none inline-block font-bold py-6 my-2 text-4xl text-black">Collection {{collection.name}}</p>
+    <a 
+      class="align-middle cursor-pointer text-sm p-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-100 transition"
+      (click)="deleteCollection()"
+      >Delete Collection</a>
+  </div>
+  <ul class="flex">
+    <li class="mr-2">
+      <a 
+        class="cursor-pointer inline-block p-2 border-b-2" 
+        [class.text-black]="isReportsActive"
+        [class.border-black]="isReportsActive"
+        [class.border-transparent]="!isReportsActive"
+        routerLink="reports"
+      >Reports</a>
+    </li>
+    <li class="mr-2">
+      <a 
+        class="cursor-pointer inline-block p-2 border-b-2"
+        [class.text-black]="!isReportsActive"
+        [class.border-black]="!isReportsActive"
+        [class.border-transparent]="isReportsActive"
+        routerLink="overview"
+      >Overview</a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,16 @@
+.card {
+  border: none;
+}
+
+* {
+  background-color: transparent;
+}
+
+.score {
+font-family: 'CabinetGrotesk-Regular';
+}
+
+.sentiment-chart {
+  width:100%;
+  height:100%
+}

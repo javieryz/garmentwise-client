@@ -1,0 +1,21 @@
+app-overview-sentiment-card {
+  border-radius: 0.7rem;
+  aspect-ratio: 1.2;
+  min-width: 20%;
+}
+
+app-sentiment-card {
+  border-radius: 0.7rem;
+  aspect-ratio: 1.2;
+  min-width: 20%;
+}
+
+#overall div {
+  color: white;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

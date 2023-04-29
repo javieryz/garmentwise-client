@@ -1,0 +1,46 @@
+<div class="flex flex-col w-full">
+  <div class="flex flex-row justify-between mb-8 h-10">
+    <span class="flex items-end text-xl text-left font-semibold">Reports ({{reports.length}})</span>
+    <div class="w-2/12">
+        <a class="block cursor-pointer text-center rounded-lg bg-black text-white px-3.5 py-2.5 text-md hover:bg-black hover:shadow-md transition" 
+            routerLink="../new-report">+ New Report</a>
+    </div>
+  </div>
+  <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden">
+    <table class="min-w-full divide-y divide-gray-300">
+      <thead>
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-medium bg-neutral-100">Report</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-medium bg-neutral-100">Date</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Overall score</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Number of reviews</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Action</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-300">
+        <tr class="bg-white hover:bg-gray-50" *ngFor="let report of reports">
+          <td class="px-6 py-4 whitespace-nowrap text-md font-medium text-gray-800">{{report.title}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-md text-gray-800">{{report.date}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-md text-center text-gray-800">
+            <span [ngClass]="{
+              'border-red-600 text-red-600 bg-red-100': report.overall_score <= 6,
+              'border-green-600 text-green-600 bg-green-100': report.overall_score > 6
+            }" class="text-xs px-2 py-1 border rounded-lg capitalize">
+              {{report.overall_score}}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-md text-center text-gray-800">{{report.total_reviews}}</td>
+          <td class="flex flex-row justify-center px-6 py-4 whitespace-nowrap text-md text-gray-800 text-right">
+            <a 
+              class="block cursor-pointer text-center rounded-lg bg-black text-white px-3 py-1.5 m-1 text-sm hover:bg-black hover:shadow-md transition"
+              routerLink="../report/{{ report.id }}">Open</a>
+            <a 
+            class="block cursor-pointer text-center text-sm px-3 py-1.5 m-1 text-red-500 border border-red-500 rounded-lg hover:bg-red-100 transition"
+            (click)="deleteReport(report)"
+            >Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

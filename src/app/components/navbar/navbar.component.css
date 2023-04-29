@@ -1,0 +1,47 @@
+.nav-container {
+    box-sizing: border-box;
+    height: 10vh;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    text-decoration: none;
+    color: #000;
+    align-items: center;
+}
+
+li {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    flex-basis: 20%;
+    text-align: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.menu-2 {
+    display: flex;
+}
+
+.menu-2 > li {
+    flex-basis: 50%;
+    height: 100%;
+}

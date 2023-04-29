@@ -1,0 +1,16 @@
+:host {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+app-sidebar {
+    width: 18rem;
+    max-width: 20rem;
+}
+
+.router-wrapper {
+  margin-left: 18rem;
+  padding: 0rem 2rem;
+  width: 100%;
+}

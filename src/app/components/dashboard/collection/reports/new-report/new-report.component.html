@@ -1,0 +1,10 @@
+<form class="flex flex-col my-6 space-y-4" [formGroup]="reportForm" (ngSubmit)="onSubmit($event)">
+  <p class="flex-none inline-block font-bold py-2 mb-2 text-2xl rounded-xl text-black>Create a new report">Create a new Report</p>
+  <label class="block mb-2 text-md font-medium text-gray-900" for="reportName">Name of your Report</label>
+  <input class="bg-white border border-gray-300 text-gray-900 sm:text-md rounded-lg focus:border-primary-600 block w-full p-2.5" 
+      placeholder="My report" formControlName="reportName" type="text" name="reportName">
+  <input class="block w-full border border-gray-200 rounded-md text-md hover:cursor-pointer hover:bg-gray-100 file:hover:cursor-pointer file:hover:bg-gray-300 file:border-0 file:bg-gray-200 file:mr-4 file:py-3 file:px-4"
+      (change)="onFileChange($event)" formControlName="fileInput" type="file" name="fileInput">
+  <input class="block cursor-pointer text-center rounded-xl bg-black text-white px-3.5 py-2.5 text-md font-semibold hover:bg-black hover:shadow-md transition"
+      type="submit" value="Create Report">
+</form> 

@@ -1,0 +1,11 @@
+.card {
+    border: none;
+}
+
+* {
+    background-color: transparent;
+}
+
+.score {
+  font-family: 'CabinetGrotesk-Regular';
+}

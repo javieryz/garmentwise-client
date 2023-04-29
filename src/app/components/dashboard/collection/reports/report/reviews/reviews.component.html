@@ -1,0 +1,94 @@
+<div class="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead>
+        <tr>
+          <th scope="col" class="px-6 py-3 w-4/12 text-left text-sm font-medium bg-neutral-100">Review</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">
+            <span class="text-sm px-5 py-2 bg-neutral-100">
+              Fit
+            </span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-center font-medium bg-neutral-100">
+            <span class="text-sm px-4 py-2 bg-neutral-100">
+              Color
+            </span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-center font-medium bg-neutral-100">
+            <span class="text-sm px-3 py-2 bg-neutral-100">
+              Quality
+            </span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Overall</th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-300">
+      <tr *ngFor="let review of reviews">
+        <td class="text-sm px-6 py-4 align-top w-7/12">
+          <div class="review-text h-10 text-gray-600 overflow-hidden" [ngClass]="{ 'expanded': expanded[review.review_number] }">
+            "{{review.review_text}}"
+          </div>
+          <button 
+            class="show my-1 py-0.5 p-2 rounded-md text-xs text-gray-500 bg-gray-200 hover:bg-gray-300 transition" 
+            *ngIf="review.review_text.split(' ').length > 50" 
+            (click)="toggleExpansion(review.review_number)"
+          >
+            {{expanded[review.review_number]? 'Show less': '•••'}}
+          </button>
+        </td>
+        <td class="bg-white px-4 py-2 text-center">
+          <span [ngClass]="{
+            'border-red-600 text-red-600 bg-red-100': review.fit_score == '0',
+            'border-green-600 text-green-600 bg-green-100': review.fit_score == '1',
+            'border-gray-500 text-gray-500 bg-gray-50': review.fit_score == '-1'
+          }" class="text-xs px-2 py-1 border rounded-lg capitalize">
+            {{review.fit_score == "1"? "Positive": review.fit_score == "0"? "Negative": "N/A"}}
+          </span>
+        </td>
+        <td class="bg-white px-4 py-2 text-center">
+          <span [ngClass]="{
+            'border-red-600 text-red-600 bg-red-100': review.color_score == '0',
+            'border-green-600 text-green-600 bg-green-100': review.color_score == '1',
+            'border-gray-500 text-gray-500 bg-gray-50': review.color_score == '-1'
+          }" class="text-xs px-2 py-1 border rounded-lg capitalize">
+            {{review.color_score == "1"? "Positive": review.color_score == "0"? "Negative": "N/A"}}
+          </span>
+        </td>
+        <td class="bg-white px-4 py-2 text-center">
+          <span [ngClass]="{
+            'border-red-600 text-red-600 bg-red-100': review.quality_score == '0',
+            'border-green-600 text-green-600 bg-green-100': review.quality_score == '1',
+            'border-gray-500 text-gray-500 bg-gray-50': review.quality_score == '-1'
+          }" class="text-xs px-2 py-1 border rounded-lg capitalize">
+            {{review.quality_score == "1"? "Positive": review.quality_score == "0"? "Negative": "N/A"}}
+          </span>
+        </td>
+        <td class="text-center text-xs px-6 py-2"
+        >
+          <span [ngClass]="{
+            'border-red-600 text-red-600 bg-red-100': review.prediction == '0',
+            'border-green-600 text-green-600 bg-green-100': review.prediction == '1'
+          }" class="text-xs px-2 py-1 border rounded-lg capitalize">
+            {{review.prediction == "1"? "Positive": "Negative"}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="min-w-full py-2 px-6">
+    <button 
+      class="px-4 py-2 bg-white rounded-lg transition" 
+      [ngClass]="{ 
+        'cursor-not-allowed hover:bg-white text-gray-200': currentPage <= 1,
+        'cursor-pointer hover:bg-gray-100 text-black': currentPage > 1
+      }"  
+      (click)="previousPage()"
+      [disabled]="currentPage <= 1">
+      Previous
+    </button>
+    <button 
+      class="px-4 py-2 bg-white rounded-lg hover:bg-gray-100 transition" 
+      (click)="nextPage()">
+      Next
+    </button>
+  </div>
+</div>
