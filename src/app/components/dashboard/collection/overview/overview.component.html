@@ -1,31 +1,23 @@
 <div class="flex items-center h-12">
-  <span class="flex items-end text-xl text-left font-semibold">Scores evolution</span>
+  <span class="flex items-end text-xl text-left">Scores evolution</span>
 </div>
 <div class="flex mb-4">
-  <div (click)="changeScoreChart('overall')">
-    <app-sentiment-card
-      class="flex grow flex-col text-black text-lg hover:cursor-pointer border border-gray-300 justify-between h-44 my-4 mr-2 p-4" 
-      [ngClass]="{'shadow-md bg-black text-white': dataType == 'overall'}"
-      title="Overall Sentiment" scoreType="overall" [numReviews]="overallReviews" [score]="overallScore"></app-sentiment-card>
-  </div>
-  <div (click)="changeScoreChart('fit')">
-    <app-overview-sentiment-card 
-      class="flex grow flex-col text-lg hover:cursor-pointer border border-gray-300 justify-between h-44 my-4 mx-2 p-4" 
-      [ngClass]="{'shadow-md bg-black text-white': dataType == 'fit'}"
-      title="Fit score" scoreType="fit" [numReviews]="fitReviews" [score]="fitScore"></app-overview-sentiment-card>
-  </div>
-  <div (click)="changeScoreChart('color')">
-    <app-overview-sentiment-card 
-      class="flex grow flex-col text-lg hover:cursor-pointer border border-gray-300 justify-between h-44 my-4 mx-2 p-4" 
-      [ngClass]="{'shadow-md bg-black text-white': dataType == 'color'}"
-      title="Color score" scoreType="color" [numReviews]="colorReviews" [score]="colorScore"></app-overview-sentiment-card>
-  </div>
-  <div (click)="changeScoreChart('quality')">
-    <app-overview-sentiment-card 
-      class="flex grow flex-col text-lg hover:cursor-pointer border border-gray-300 justify-between h-44 my-4 ml-2 p-4" 
-      [ngClass]="{'shadow-md bg-black text-white': dataType == 'quality'}"
-      title="Quality score" scoreType="quality" [numReviews]="qualityReviews" [score]="qualityScore"></app-overview-sentiment-card>
-  </div>
+  <app-sentiment-card
+    class="flex grow flex-col text-black text-lg hover:cursor-pointer justify-between h-44 my-4 mr-2 p-4" 
+    [ngClass]="{'shadow-md bg-black text-white': dataType == 'overall', 'bg-zinc-100': dataType != 'overall'}" (click)="changeScoreChart('overall')"
+    title="Overall Sentiment" scoreType="overall" [numReviews]="overallReviews" [score]="overallScore"></app-sentiment-card>
+  <app-overview-sentiment-card 
+    class="flex grow flex-col text-lg hover:cursor-pointer justify-between h-44 my-4 mx-2 p-4" 
+    [ngClass]="{'shadow-md bg-black text-white': dataType == 'fit', 'bg-zinc-100': dataType != 'fit'}" (click)="changeScoreChart('fit')"
+    title="Fit score" scoreType="fit" [numReviews]="fitReviews" [score]="fitScore"></app-overview-sentiment-card>
+  <app-overview-sentiment-card 
+    class="flex grow flex-col text-lg hover:cursor-pointer justify-between h-44 my-4 mx-2 p-4" 
+    [ngClass]="{'shadow-md bg-black text-white': dataType == 'color', 'bg-zinc-100': dataType != 'color'}" (click)="changeScoreChart('color')"
+    title="Color score" scoreType="color" [numReviews]="colorReviews" [score]="colorScore"></app-overview-sentiment-card>
+  <app-overview-sentiment-card 
+    class="flex grow flex-col text-lg hover:cursor-pointer justify-between h-44 my-4 ml-2 p-4" 
+    [ngClass]="{'shadow-md bg-black text-white': dataType == 'quality', 'bg-zinc-100': dataType != 'quality'}" (click)="changeScoreChart('quality')"
+    title="Quality score" scoreType="quality" [numReviews]="qualityReviews" [score]="qualityScore"></app-overview-sentiment-card>
 </div>
 <div>
   <app-score-chart [dataType]="dataType"></app-score-chart>
@@ -33,7 +25,7 @@
 <div class="mb-12">  
   <div>
     <div class="flex items-center h-12 my-9">
-      <span class="flex items-end text-xl text-left font-semibold">Review distribution</span>
+      <span class="flex items-end text-xl text-left">Review distribution</span>
     </div> 
     <app-bar-chart></app-bar-chart>
   </div> 

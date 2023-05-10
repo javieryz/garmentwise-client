@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,6 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'GarmentWise';
-  @ViewChild(RouterOutlet) outlet!: RouterOutlet;
 
-  constructor(private router: Router) {}
-
-  onUserLoggedIn(username: string) {
-    this.router.navigate(['/dashboard'])
-  }
+  constructor() {}
 }

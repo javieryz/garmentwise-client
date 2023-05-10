@@ -53,21 +53,20 @@ export class ScoreChartComponent implements AfterViewInit, OnInit, OnChanges {
           mode: 'index',
         },
         responsive: true,
-        maintainAspectRatio: false,
-        aspectRatio: 2.5,
+        aspectRatio: 5,
         plugins: {
           legend: {
             display: false,
           },
           tooltip: {
-            backgroundColor: '#FFFFFF',
-            borderColor: '#f5f5f5',
+            backgroundColor: '#fafafa',
+            borderColor: '#fafafa',
             borderWidth: 2,
             titleColor: 'black',
             displayColors: false,
             bodyColor: 'black',
             padding: 14,
-            caretSize: 10,
+            caretSize: 0,
             titleFont: {
               size: 17,
               family: 'Inter',
@@ -92,7 +91,7 @@ export class ScoreChartComponent implements AfterViewInit, OnInit, OnChanges {
               }
             },
             grid: {
-              display: false
+              display: true
             },
             title: {
               display: false
@@ -103,7 +102,17 @@ export class ScoreChartComponent implements AfterViewInit, OnInit, OnChanges {
             type: 'linear',
             beginAtZero: true,
             max: 10,
-            display: false
+            display: false,
+            ticks: {
+              display: true,
+              font: {
+                family: 'Inter'
+              },
+              stepSize: 200
+            },
+            grid: {
+              display: true
+            }
           }
         }
       }
@@ -161,6 +170,9 @@ export class ScoreChartComponent implements AfterViewInit, OnInit, OnChanges {
 
   ngOnInit() {
     this.reports = this.route.snapshot.data.reports;
+    this.reports.sort((a: Report, b: Report) => {
+      return a.id - b.id;
+    });
     this.overallData = this.reports.map(report => Math.round(report.overall_score * 100) / 10);
     this.fitData = this.reports.map(report => Math.round(report.fit_score * 100) / 10);
     this.colorData = this.reports.map(report => Math.round(report.color_score * 100) / 10);

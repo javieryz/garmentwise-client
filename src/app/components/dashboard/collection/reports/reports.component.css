@@ -5,3 +5,14 @@
 
   justify-content: center;
 }
+
+.new-report {
+  background-color: #0157FF;
+  transition: box-shadow 0.1s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.new-report:hover {
+  box-shadow: 0 1px 2px 1px #a9c6ff;
+}

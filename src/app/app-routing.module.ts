@@ -1,13 +1,9 @@
-import { inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/navbar/about/about.component';
-import { FaqComponent } from './components/navbar/faq/faq.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CollectionComponent } from './components/dashboard/collection/collection.component';
 import { OverviewComponent } from './components/dashboard/collection/overview/overview.component';
 import { ReportsComponent } from './components/dashboard/collection/reports/reports.component';
@@ -17,19 +13,16 @@ import { ReportResolver } from './resolvers/report.resolver';
 import { ReportsResolver } from './resolvers/reports.resolver';
 import { ReviewsResolver } from './resolvers/reviews.resolver';
 import { NewReportComponent } from './components/dashboard/collection/reports/new-report/new-report.component';
+import { CollectionResolver } from './resolvers/collection.resolver';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'navbar', component: NavbarComponent },
-  { path: 'faq', component: FaqComponent },
-  { path: 'about', component: AboutComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { 
     path: 'dashboard', 
     component: DashboardComponent, 
-    
     children: [
       {
         path: '',
@@ -42,6 +35,9 @@ const routes: Routes = [
       {
         path: 'collection/:collectionId',
         component: CollectionComponent,
+        resolve: {
+          collection: CollectionResolver
+        },
         children: [
           {
             path: '',

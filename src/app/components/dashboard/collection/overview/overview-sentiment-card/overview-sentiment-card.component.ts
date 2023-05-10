@@ -41,12 +41,14 @@ export class OverviewSentimentCardComponent implements OnInit, AfterViewInit, On
         ]
       },
       options: {
-        aspectRatio: 2.5,
-        
+        aspectRatio: 3,
         responsive: true,
         plugins: {
           legend: {
             display: false,
+          },
+          tooltip: {
+            enabled: false
           }
         },
         scales: {
@@ -68,7 +70,7 @@ export class OverviewSentimentCardComponent implements OnInit, AfterViewInit, On
           },
           y: {
             type: 'linear',
-            min: 6,
+            min: 2,
             max: 10,
             display: false
           }
@@ -94,6 +96,9 @@ export class OverviewSentimentCardComponent implements OnInit, AfterViewInit, On
   ngOnInit() {
     if (this.score) this.score = Math.round(this.score * 100) / 10;
     this.reports = this.route.snapshot.data.reports;
+    this.reports.sort((a: Report, b: Report) => {
+      return a.id - b.id;
+    });
     if (this.scoreType === 'fit') {
       this.data = this.reports.map(report => Math.round(report.fit_score * 100) / 10);
       this.borderColor = '#1d4ed8';

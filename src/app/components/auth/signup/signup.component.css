@@ -3,12 +3,5 @@
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-}
-
-.preview {
-  background-color: #E9E9E9;
-}
-
-img {
-  background-color: #E9E9E9;
+  overflow: hidden;
 }

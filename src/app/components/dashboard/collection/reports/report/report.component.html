@@ -1,17 +1,17 @@
 <div class="flex flex-col w-full">
     <div class="flex-none inline-block text-2xl mb-4 overflow-wrap break-word">
-        <p class="mt-2 text-xl font-semibold">
+        <p class="mt-2 text-xl">
             {{report.title}}
         </p>
     </div>
     <div class="flex mb-4">
-        <app-sentiment-card class="flex grow flex-col text-lg border border-neutral-300 shadow-sm justify-between h-44 my-4 mr-2 p-4" 
+        <app-sentiment-card class="flex grow flex-col text-lg bg-zinc-100 justify-between h-44 my-4 mr-2 p-4" 
             title="Overall Sentiment" scoreType="overall" [numReviews]="report.total_reviews" [score]="report.overall_score"></app-sentiment-card>
-        <app-sentiment-card class="flex grow flex-col text-lg border border-neutral-300 shadow-sm justify-between h-44 my-4 mx-2 p-4" 
+        <app-sentiment-card class="flex grow flex-col text-lg bg-zinc-100 justify-between h-44 my-4 mx-2 p-4" 
             title="Fit score" scoreType="fit" [numReviews]="report.fit_reviews" [score]="report.fit_score"></app-sentiment-card>
-        <app-sentiment-card class="flex grow flex-col text-lg border border-neutral-300 shadow-sm justify-between h-44 my-4 mx-2 p-4" 
+        <app-sentiment-card class="flex grow flex-col text-lg bg-zinc-100 justify-between h-44 my-4 mx-2 p-4" 
             title="Color score" scoreType="color" [numReviews]="report.color_reviews" [score]="report.color_score"></app-sentiment-card>
-        <app-sentiment-card class="flex grow flex-col text-lg border border-neutral-300 shadow-sm justify-between h-44 my-4 ml-2 p-4" 
+        <app-sentiment-card class="flex grow flex-col text-lg bg-zinc-100 justify-between h-44 my-4 ml-2 p-4" 
             title="Quality score" scoreType="quality" [numReviews]="report.quality_reviews" [score]="report.quality_score"></app-sentiment-card>
     </div>
     <app-wordcloud [report_id]="report.id"></app-wordcloud>

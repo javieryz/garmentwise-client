@@ -12,6 +12,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class NewReportComponent implements OnInit {
   reportFile!: File;
   reportForm!: FormGroup;
+  fileName: string = "";
 
   constructor(
     private dashboardService: DashboardService,
@@ -28,6 +29,7 @@ export class NewReportComponent implements OnInit {
 
   onFileChange(event: any) {
     this.reportFile = event.target.files[0];
+    this.fileName = this.reportFile.name;
   }
 
   get form() {

@@ -11,9 +11,6 @@ import { Review } from '../models/review';
 export class DashboardService {
   private API_URL = 'http://localhost:8000/dashboard';
 
-  private collections = new BehaviorSubject<Collection[]>([{ user_id: -1, id: -1, name: "" }]);
-  collections$ = this.collections.asObservable();
-
   constructor(private http: HttpClient) { }
 
   createReport(reportName: string, collection_id: number, fileInput: File): Observable<Report> {
@@ -46,9 +43,15 @@ export class DashboardService {
       Authorization: "Bearer " + JSON.parse(sessionStorage.getItem('currentUserToken')!)
     });
 
-    console.log(headers)
-
     return this.http.get<Collection[]>(this.API_URL + '/collections', { headers });
+  }
+
+  getCollection(collectionId: number): Observable<Collection> {
+    const headers = new HttpHeaders({
+      Authorization: "Bearer " + JSON.parse(sessionStorage.getItem('currentUserToken')!)
+    });
+
+    return this.http.get<Collection>(this.API_URL + '/collections/' + collectionId, { headers })
   }
 
   getCollectionReports(collection: Collection): Observable<Report[]> {

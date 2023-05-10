@@ -43,7 +43,7 @@ export class WordcloudComponent implements OnInit {
           {
             label: "",
             data: this.wordCount.map((word: any) => word.value),
-            color: '#525252',
+            color: '#0157FF'
           }
         ]
       },
@@ -56,9 +56,9 @@ export class WordcloudComponent implements OnInit {
               console.log(value)
               return value/100 * 20;
             },
-            hoverColor: "#000000",
+            hoverColor: "#134bba",
             family: 'Helvetica',
-            padding: 3
+            padding: 5
           }
         },
         wordCloud: {
@@ -69,8 +69,8 @@ export class WordcloudComponent implements OnInit {
             display: false
           },
           tooltip: {
-            backgroundColor: '#FFFFFF',
-            borderColor: '#f5f5f5',
+            backgroundColor: '#fafafa',
+            borderColor: '#fafafa',
             borderWidth: 2,
             titleColor: 'black',
             displayColors: false,
@@ -79,12 +79,12 @@ export class WordcloudComponent implements OnInit {
             caretSize: 0,
             titleFont: {
               size: 17,
-              family: 'Inter',
+              family: 'GeneralSans-Regular',
               weight: 'normal'
             },
             bodyFont: {
               size: 13,
-              family: 'Inter',
+              family: 'GeneralSans-Regular',
             },
             
             yAlign: 'bottom'

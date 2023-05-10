@@ -73,14 +73,14 @@ export class BarChartComponent implements OnDestroy, OnInit, AfterViewInit {
             display: false,
           },
           tooltip: {
-            backgroundColor: '#FFFFFF',
-            borderColor: '#f5f5f5',
+            backgroundColor: '#fafafa',
+            borderColor: '#fafafa',
             borderWidth: 2,
             titleColor: 'black',
             displayColors: false,
             bodyColor: 'black',
             padding: 14,
-            caretSize: 10,
+            caretSize: 0,
             titleFont: {
               size: 17,
               family: 'Inter',

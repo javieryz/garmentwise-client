@@ -1,26 +1,26 @@
-<div class="flex w-full bg-neutral-100">
-  <div class="flex flex-col justify-between w-full bg-neutral-100">
-    <ul class="w-full font-medium bg-neutral-100">
+<div class="flex w-full bg-stone-50">
+  <div class="flex flex-col justify-between w-full bg-stone-50">
+    <ul class="w-full font-medium bg-stone-50">
       <li>
-        <a class="logo block text-center items-center px-8 py-8 text-black text-xl bg-neutral-100"
-            routerLink="/home">Garmentwise</a>
+        <a class="logo block text-center items-center px-8 py-8 text-black text-xl bg-stone-50"
+            routerLink="/home">garmentwise</a>
       </li>
       <li class="mx-8 my-6">
         <a  class="block cursor-pointer text-center rounded-lg bg-black text-white px-3.5 py-2.5 text-md hover:bg-black hover:shadow-md transition" 
-            routerLink="new-collection">+ New Collection</a>
+            routerLink="new-collection" (click)="handleNewCollectionClick()">+ New Collection</a>
       </li>
-      <li class="flex flex-row justify-between mx-8 my-4 bg-neutral-100">
-        <p class="font-semibold px-2 bg-neutral-100">Collections</p>
-        <p class="bg-neutral-200 text-gray-500 rounded-lg px-2">{{collections.length}}</p>
+      <li class="flex flex-row justify-between mx-8 my-4 bg-stone-50">
+        <p class="collection font-medium px-2 bg-stone-50">Collections</p>
+        <p class="bg-stone-200 text-gray-500 rounded-lg px-2">{{collections.length}}</p>
       </li>
       <li class="mx-8">
-        <a  class="block cursor-pointer text-left text-md items-center px-6 py-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 transition" 
-            [ngClass]="{'hover:bg-neutral-200': currentCollection?.id !== collection.id, 'font-bold bg-neutral-200': currentCollection?.id === collection.id}"
+        <a  class="block cursor-pointer text-left text-md items-center px-6 py-3 rounded-lg hover:bg-stone-200 transition" 
+            [ngClass]="{'bg-stone-50 hover:bg-stone-200': currentCollectionId !== collection.id, 'bg-stone-200': currentCollectionId === collection.id}"
             routerLink="collection/{{ collection.id }}"
             *ngFor="let collection of collections" (click)="handleCollectionClick(collection)">{{collection.name}}</a>
       </li>
     </ul>
-    <ul class="space-y-4 w-full bg-neutral-100">
+    <ul class="space-y-4 w-full bg-stone-50">
       <li class="mx-8 my-6">
         <a class="block cursor-pointer text-center rounded-lg bg-gray-500 text-white px-3.5 py-2.5 text-md hover:bg-gray-600 hover:shadow-md transition"
             (click)="logout()">Log out</a>

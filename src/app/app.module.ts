@@ -30,8 +30,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { ScoreChartComponent } from './components/dashboard/collection/overview/score-chart/score-chart.component';
 import { OverviewSentimentCardComponent } from './components/dashboard/collection/overview/overview-sentiment-card/overview-sentiment-card.component';
 import { BarChartComponent } from './components/dashboard/collection/overview/bar-chart/bar-chart.component';
-import { RouteReuseStrategy } from '@angular/router';
-import { OverviewRouteReuseStrategy } from './route-strategy/custom-route-reuse-strategy';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { OverviewRouteReuseStrategy } from './route-strategy/overview-route-reuse-strategy';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
@@ -66,11 +66,15 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgChartsModule
+    NgChartsModule,
+    RouterModule.forRoot([
+      { path: 'collection/:collectionId', component: CollectionNavbarComponent, data: { reuse: true } }
+    ])
   ],
   providers: [
     { provide: DatePipe, useValue: new DatePipe('en-US') },
-    { provide: RouteReuseStrategy, useClass: OverviewRouteReuseStrategy }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: RouteReuseStrategy, useClass: OverviewRouteReuseStrategy },
   ],
   bootstrap: [AppComponent]
 })

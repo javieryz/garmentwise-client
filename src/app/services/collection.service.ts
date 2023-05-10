@@ -7,14 +7,7 @@ import { Report } from '../models/report';
   providedIn: 'root'
 })
 export class CollectionService {
-  private collection = new BehaviorSubject<Collection>({ user_id: -1, id: -1, name: "" });
-  collection$ = this.collection.asObservable();
-
   constructor() {}
-
-  setCollection(collection: Collection) {
-    this.collection.next(collection);
-  }
 
   getAverageScores(reports: Report[]): [number, number, number, number] {
     let overallScore = 0, fitScore = 0, colorScore = 0, qualityScore = 0;

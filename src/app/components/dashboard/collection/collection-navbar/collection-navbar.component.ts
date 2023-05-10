@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Collection } from 'src/app/models/collection';
 import { CollectionService } from 'src/app/services/collection.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
@@ -10,17 +10,18 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./collection-navbar.component.css']
 })
 export class CollectionNavbarComponent implements OnInit {
-  collection: Collection = { user_id: -1, id: -1, name: "Collection"};
+  collection: Collection = { user_id: -1, id: -1, name: ""};
   isReportsActive = true;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router, 
-    private collectionService: CollectionService,
+    protected collectionService: CollectionService,
     private dashboard: DashboardService
   ) {}
 
   ngOnInit() {
-    this.collectionService.collection$.subscribe(collection => this.collection = collection);
+    this.collection = this.route.snapshot.data.collection;
     this.router.events.subscribe(val => {
       this.isReportsActive = this.router.url.includes("/report");
     });

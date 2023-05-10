@@ -16,6 +16,7 @@ export class NewCollectionComponent implements OnInit {
   report: Report | null = null;
   collectionForm!: FormGroup;
   reportFile!: File;
+  fileName: string = "";
 
   isSubmitting: boolean = false;
   
@@ -39,6 +40,7 @@ export class NewCollectionComponent implements OnInit {
 
   onFileChange(event: any) {
     this.reportFile = event.target.files[0];
+    this.fileName = this.reportFile.name;
   }
 
   onSubmit(event: any) {

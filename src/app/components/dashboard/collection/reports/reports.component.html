@@ -1,20 +1,20 @@
 <div class="flex flex-col w-full">
   <div class="flex flex-row justify-between mb-8 h-10">
-    <span class="flex items-end text-xl text-left font-semibold">Reports ({{reports.length}})</span>
+    <span class="flex items-end text-xl text-left">Reports ({{reports.length}})</span>
     <div class="w-2/12">
-        <a class="block cursor-pointer text-center rounded-lg bg-black text-white px-3.5 py-2.5 text-md hover:bg-black hover:shadow-md transition" 
+        <a class="new-report block cursor-pointer text-center rounded-lg text-white px-3.5 py-2.5 text-md hover:shadow-sm transition" 
             routerLink="../new-report">+ New Report</a>
     </div>
   </div>
-  <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden">
+  <div class="rounded-lg overflow-hidden">
     <table class="min-w-full divide-y divide-gray-300">
       <thead>
         <tr>
-          <th scope="col" class="px-6 py-3 text-left text-sm font-medium bg-neutral-100">Report</th>
-          <th scope="col" class="px-6 py-3 text-left text-sm font-medium bg-neutral-100">Date</th>
-          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Overall score</th>
-          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Number of reviews</th>
-          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-neutral-100">Action</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-medium bg-zinc-100">Report</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-medium bg-zinc-100">Date</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-zinc-100">Overall score</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-zinc-100">Number of reviews</th>
+          <th scope="col" class="px-6 py-3 text-center text-sm font-medium bg-zinc-100">Action</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-300">

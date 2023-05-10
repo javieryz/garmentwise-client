@@ -11,24 +11,40 @@ import { CollectionService } from 'src/app/services/collection.service';
 })
 export class SidebarComponent implements OnInit {  
   collections: Collection[] = [];
-  currentCollection: Collection | null = null;
+  currentCollectionId: number;
 
   constructor(
     private dashboardService: DashboardService,
     private authService: AuthService,
     private collectionService: CollectionService,
-  ) {}
+  ) {
+    if (localStorage.getItem('currentCollectionId')) 
+      this.currentCollectionId = +localStorage.getItem('currentCollectionId')!
+    else
+      this.currentCollectionId = -1;
+  }
 
   ngOnInit() {
-    console.log(sessionStorage.getItem('currentUserToken'))
-    this.collectionService.collection$.subscribe(collection => this.currentCollection = collection);
     this.dashboardService.getUserCollections().subscribe((collections: Collection[]) => {
+      collections.sort((a: Collection, b: Collection) => {
+        return a.id - b.id;
+      });
       this.collections = collections;
     }); 
+    
+    if (localStorage.getItem('currentCollectionId')) 
+      this.currentCollectionId = +localStorage.getItem('currentCollectionId')!
+    else
+      this.currentCollectionId = -1;
   }
 
   handleCollectionClick(collection: Collection) {
-    this.collectionService.setCollection(collection);
+    localStorage.setItem('currentCollectionName', collection.name);
+    localStorage.setItem('currentCollectionId', collection.id.toString());
+  }
+
+  handleNewCollectionClick() {
+    if (this.currentCollectionId) this.currentCollectionId = -1;
   }
 
   updateReports() {

@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { NavbarService } from '../navbar/navbar.service';
+import { Component, OnInit } from '@angular/core';
 import { gsap } from 'gsap';
 
 @Component({
@@ -8,14 +7,13 @@ import { gsap } from 'gsap';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  title: NodeListOf<HTMLElement> | null = null;
+  elements: NodeListOf<HTMLElement> | null = null;
 
-  constructor(public nav: NavbarService, private elRef: ElementRef) {}
+  constructor() {}
 
   ngOnInit() {
-    this.nav.show();
-    this.title = document.querySelectorAll('.home-title');
-    gsap.fromTo(this.title, {
+    this.elements = document.querySelectorAll('.home');
+    gsap.fromTo(this.elements, {
       y: 100,
       opacity: 0
     }, {
