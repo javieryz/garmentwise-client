@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { gsap } from 'gsap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ export class SignupComponent implements OnInit {
   error = '';
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder, 
     private authService: AuthService
   ) {}
@@ -53,6 +55,7 @@ export class SignupComponent implements OnInit {
       .signup(this.form['email'].value, this.form['password'].value)
       .subscribe({
         next: () => {
+          this.router.navigate(['/dashboard']);
         },
         error: () => {
           this.error = "Something went wrong";

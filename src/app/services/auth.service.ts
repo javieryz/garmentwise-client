@@ -31,7 +31,7 @@ export class AuthService {
       .set('password', password)
 
     return this.http
-      .post<any>('http://localhost:8000/auth/login', body.toString(), httpOptions)
+      .post<any>('http://ec2-35-180-85-206.eu-west-3.compute.amazonaws.com:5000/auth/login', body.toString(), httpOptions)
       .pipe(
         map((response) => {
           const now = new Date().getTime();
@@ -52,7 +52,7 @@ export class AuthService {
       .set('password', password)
     
     return this.http
-      .post<any>('http://localhost:8000/auth/signup', body.toString(), httpOptions)
+      .post<any>('http://ec2-35-180-85-206.eu-west-3.compute.amazonaws.com:5000/auth/signup', body.toString(), httpOptions)
       .pipe(
         map((response) => {
           sessionStorage.setItem('currentUserToken', JSON.stringify(response.access_token));

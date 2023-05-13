@@ -32,7 +32,7 @@ export class BarChartComponent implements OnDestroy, OnInit, AfterViewInit {
         labels: this.labels, 
 	      datasets: [
           {
-            label: 'Fit',
+            label: 'Fit mentions',
             data: this.fitData,
             backgroundColor: '#6366f1',
             borderRadius: 4,
@@ -41,7 +41,7 @@ export class BarChartComponent implements OnDestroy, OnInit, AfterViewInit {
             categoryPercentage: 0.5,
           },
           {
-            label: 'Color',
+            label: 'Color mentions',
             data: this.colorData,
             backgroundColor: '#fb7185',
             borderRadius: 4,
@@ -50,7 +50,7 @@ export class BarChartComponent implements OnDestroy, OnInit, AfterViewInit {
             categoryPercentage: 0.5,
           },
           {
-            label: 'Quality',
+            label: 'Quality mentions',
             data: this.qualityData,
             backgroundColor: '#fcd34d',
             borderRadius: 4,
@@ -70,7 +70,7 @@ export class BarChartComponent implements OnDestroy, OnInit, AfterViewInit {
         aspectRatio: 2.5,
         plugins: {
           legend: {
-            display: false,
+            display: true,
           },
           tooltip: {
             backgroundColor: '#fafafa',

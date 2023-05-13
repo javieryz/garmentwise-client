@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Report } from 'src/app/models/report';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
@@ -13,11 +13,15 @@ export class NewReportComponent implements OnInit {
   reportFile!: File;
   reportForm!: FormGroup;
   fileName: string = "";
+  isSubmitting: boolean = false;
+
+  report: Report | null = null;
 
   constructor(
     private dashboardService: DashboardService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,8 +47,11 @@ export class NewReportComponent implements OnInit {
     const reportName = event.target.elements.reportName.value;
     const fileInput = event.target.elements.fileInput.files[0];
   
+    this.isSubmitting = true;
+
     this.dashboardService.createReport(reportName, collectionId, fileInput).subscribe((report: Report) => {
-      
+      this.report = report;
+      this.router.navigate(['/dashboard/collection/' + collectionId + '/report/' + this.report?.id])
     });
   }
 }

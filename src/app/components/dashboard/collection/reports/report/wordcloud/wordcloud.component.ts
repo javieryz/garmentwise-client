@@ -27,7 +27,6 @@ export class WordcloudComponent implements OnInit {
             const count = (countObject as { count: number }).count;
             return { key: word, value: count };
           });
-          console.log(this.wordCount)
           this.createChart();
         }
       });
@@ -53,7 +52,6 @@ export class WordcloudComponent implements OnInit {
           word: {
             size: function(context) {
               var value = context.dataset.data[context.dataIndex] as unknown as number;
-              console.log(value)
               return value/100 * 20;
             },
             hoverColor: "#134bba",
