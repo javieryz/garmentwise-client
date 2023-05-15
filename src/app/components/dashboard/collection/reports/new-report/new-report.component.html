@@ -18,7 +18,8 @@
           <span class="bg-stone-50 text-sm text-gray-500">{{fileName}}</span>  
       </label>
     </div> 
-    <input class="block cursor-pointer text-center rounded-xl bg-black text-white px-3.5 py-2.5 text-md hover:bg-black hover:shadow-md transition"
-        type="submit" value="Create Report">
+    <input class="block text-center rounded-xl bg-black text-white px-3.5 py-2.5 text-md hover:shadow-md transition"
+      [ngClass]="{ 'bg-zinc-500 cursor-not-allowed': isSubmitting, 'bg-black cursor-pointer': !isSubmitting }" [disabled]="isSubmitting" type="submit" 
+      [value]="isSubmitting? 'Creating Report...': 'Create Report'">
   </form> 
 </div>
