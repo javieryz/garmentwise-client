@@ -16,7 +16,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.elements = document.querySelectorAll('.dashboard');
-    console.log(this.elements)
     gsap.fromTo(this.elements, {
       y: 0,
       opacity: 0
@@ -30,7 +29,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.elements = document.querySelectorAll('.dashboard');
-    console.log(this.elements)
     gsap.fromTo(this.elements, {
       y: 0,
       opacity: 1

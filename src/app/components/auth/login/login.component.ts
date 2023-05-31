@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
     this.elements = document.querySelectorAll('.login');
-    console.log(this.elements)
     gsap.fromTo(this.elements, {
       y: 100,
       opacity: 0
@@ -58,7 +57,6 @@ export class LoginComponent implements OnInit {
       .login(this.form['email'].value, this.form['password'].value)
       .subscribe({
         next: () => {
-          console.log(sessionStorage.getItem('currentUserToken'));
           this.router.navigate(['/dashboard']);
           this.error = "";
         },

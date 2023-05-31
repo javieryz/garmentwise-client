@@ -7,7 +7,7 @@ import { Report } from '../models/report';
   providedIn: 'root'
 })
 export class ReportService {
-  private API_URL = 'http://localhost:8000/dashboard';
+  private API_URL = 'http://ec2-35-180-85-206.eu-west-3.compute.amazonaws.com:5000/dashboard';
 
   constructor(private http: HttpClient) { }
 

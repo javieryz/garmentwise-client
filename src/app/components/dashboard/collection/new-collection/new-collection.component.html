@@ -24,7 +24,8 @@
       </label>
     </div> 
     
-    <input class="block cursor-pointer text-center rounded-lg bg-black text-white px-3.5 py-2.5 text-md hover:bg-black hover:shadow-md transition"
-      [class.disabled]="isSubmitting" type="submit" value="Create Collection">
+    <input class="block text-center rounded-lg text-white px-3.5 py-2.5 text-md hover:shadow-md transition"
+    [ngClass]="{ 'bg-zinc-500 cursor-not-allowed': isSubmitting, 'bg-black cursor-pointer': !isSubmitting }" [disabled]="isSubmitting" type="submit"
+    [value]="isSubmitting? 'Creating Collection...': 'Create Collection'">
   </form>
 </div>
