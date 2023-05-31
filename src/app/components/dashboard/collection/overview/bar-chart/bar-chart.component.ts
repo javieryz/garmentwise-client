@@ -70,7 +70,7 @@ export class BarChartComponent implements OnDestroy, OnInit, AfterViewInit {
         aspectRatio: 2.5,
         plugins: {
           legend: {
-            display: false,
+            display: true,
           },
           tooltip: {
             backgroundColor: '#fafafa',
